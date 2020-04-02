@@ -2,10 +2,10 @@ const express = require('express');
 
 const routes = express.Router();
 
-routes.get('/', (request, response) => {
-  return response.json({
-    text: 'Hello World'
-  });
+routes.post('/ongs', (request, response) => {
+  const { name, email, whatsapp, city, uf } = request.body;
+
+  return response.json({});
 });
 
 module.exports = routes;
