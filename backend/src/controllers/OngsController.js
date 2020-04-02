@@ -4,7 +4,12 @@ const connection = require('../database/connection');
 
 module.exports = {
   async index(request, response) {
-    const ongs = await connection('ongs').select('*');
+    const { page = 1 } = request.query;
+
+    const ongs = await connection('ongs')
+      .limit(20)
+      .offset((page - 1) * 5)
+      .select('*');
 
     return response.json(ongs);
   },
