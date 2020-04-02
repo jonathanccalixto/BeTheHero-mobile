@@ -5,5 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "echo \"start commnad\""
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
