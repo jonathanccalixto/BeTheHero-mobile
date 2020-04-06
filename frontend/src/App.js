@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from './Header';
 
 function App() {
+  const [counter, setCounter] = useState(0);
+
+  function increment() {
+    setCounter(counter + 1);
+  }
+
   return (
-    <Header>To Be Hero</Header>
+    <div>
+      <Header>Contado: {counter}</Header>
+      <button onClick={increment}>Incrementar</button>
+    </div>
   );
 }
 
