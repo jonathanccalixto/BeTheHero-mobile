@@ -43,6 +43,7 @@ form input {
   margin-top: 16px;
   text-align: center;
   text-decoration: none;
+  transition: filter 0.2s;
   width: 100%
 }
 
