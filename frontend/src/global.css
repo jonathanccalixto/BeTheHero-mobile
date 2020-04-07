@@ -45,3 +45,7 @@ form input {
   text-decoration: none;
   width: 100%
 }
+
+.button:hover {
+  filter: brightness(90%);
+}
