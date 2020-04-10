@@ -14,6 +14,32 @@ export default function Profile() {
 
   const history = useHistory();
 
+  function setLogout() {
+    localStorage.removeItem('ongId');
+    localStorage.removeItem('ongName');
+
+    history.push('/');
+  }
+
+  async function handleDelete (id) {
+    try {
+      await api.delete(`incidents/${id}`, {
+        headers: { Authorization: ongId }
+      });
+
+      setIncidents(incidents.filter(incident => incident.id !== id));
+    } catch (error) {
+      console.log('Erro ao deletar caso, tente novamente.', error.response.data);
+      alert('Erro ao deletar caso, tente novamente.');
+    }
+  }
+
+  function handleLogout (event) {
+    event.preventDefault();
+
+    setLogout();
+  }
+
   useEffect(() => {
     const id = localStorage.getItem('ongId');
 
@@ -32,34 +58,6 @@ export default function Profile() {
       setIncidents(response.data);
     });
   }, [ongId]);
-
-  function setLogout() {
-    localStorage.removeItem('ongId');
-    localStorage.removeItem('ongName');
-
-    history.push('/');
-  }
-
-  async function handleDelete (id) {
-    try {
-      const response = await api.delete(`incidents/${id}`, {
-        headers: {
-          Authorization: ongId
-        }
-      });
-
-      setIncidents(incidents.filter(incident => incident.id !== id));
-    } catch (error) {
-      console.log('Erro ao deletar caso, tente novamente.', error.response.data);
-      alert('Erro ao deletar caso, tente novamente.');
-    }
-  }
-
-  function handleLogout (event) {
-    event.preventDefault();
-
-    setLogout();
-  }
 
   return (
     <div className="profile-container">
