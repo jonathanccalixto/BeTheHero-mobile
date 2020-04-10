@@ -14,9 +14,10 @@ export default function Logon() {
     event.preventDefault();
 
     try {
-      const response = api.post('sessions', { id });
+      const response = await api.post('sessions', { id });
 
-      console.log((await response).data.name);
+      localStorage.setItem("ongId", id);
+      localStorage.setItem("ongName", response.data.name);
     } catch (error) {
       console.log('Falha no login, tente novamente.', error.response.data);
       alert('Falha no login, tente novamente.');
