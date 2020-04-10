@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useHistory } from "react-router-dom";
 import { FiLogIn } from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -10,6 +11,8 @@ import heroesImg from '../../assets/heroes.png';
 export default function Logon() {
   const [id, setId] = useState('');
 
+  const history = useHistory();
+
   async function handleLogon (event) {
     event.preventDefault();
 
@@ -18,6 +21,8 @@ export default function Logon() {
 
       localStorage.setItem("ongId", id);
       localStorage.setItem("ongName", response.data.name);
+
+      history.push('/profile');
     } catch (error) {
       console.log('Falha no login, tente novamente.', error.response.data);
       alert('Falha no login, tente novamente.');
