@@ -21,7 +21,7 @@ export default function Profile() {
       setOngName(localStorage.getItem('ongName'));
       setOngId(id);
     } else {
-      history.push('/');
+      setLogout();
     }
   }, []);
 
@@ -32,6 +32,13 @@ export default function Profile() {
       setIncidents(response.data);
     });
   }, [ongId]);
+
+  function setLogout() {
+    localStorage.removeItem('ongId');
+    localStorage.removeItem('ongName');
+
+    history.push('/');
+  }
 
   async function handleDelete (id) {
     try {
@@ -51,10 +58,7 @@ export default function Profile() {
   function handleLogout (event) {
     event.preventDefault();
 
-    localStorage.removeItem('ongId');
-    localStorage.removeItem('ongName');
-
-    history.push('/');
+    setLogout();
   }
 
   return (
