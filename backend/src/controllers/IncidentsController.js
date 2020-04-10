@@ -27,6 +27,18 @@ module.exports = {
     const { title, description, value } = request.body;
     const ong_id = request.headers.authorization;
 
+    if ( !ong_id ) {
+      return response.status(403).json({
+        error: 'you need is logged into the system.',
+      });
+    }
+
+    if ( !title || !description || !value ) {
+      return response.status(401).json({
+        error: 'One or more fields are blank.',
+      });
+    }
+
     const [id] = await connection('incidents').insert({
       title,
       description,
