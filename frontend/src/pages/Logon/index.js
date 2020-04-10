@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FiLogIn } from 'react-icons/fi';
 
+import api from '../../services/api';
 import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
@@ -12,7 +13,14 @@ export default function Logon() {
   async function handleLogon (event) {
     event.preventDefault();
 
-    console.log({ id })
+    try {
+      const response = api.post('sessions', { id });
+
+      console.log((await response).data.name);
+    } catch (error) {
+      console.log('Falha no login, tente novamente.', error.response.data);
+      alert('Falha no login, tente novamente.');
+    }
   }
 
   return (
