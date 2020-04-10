@@ -18,6 +18,10 @@ module.exports = {
 
     const id = crypto.randomBytes(4).toString('HEX');
 
+    if( !name || !email || !whatsapp || !city || !uf ) {
+      return response.status(401).json({ error: 'One or more fields are blank.'});
+    }
+
     await connection('ongs').insert({
       id,
       name,
