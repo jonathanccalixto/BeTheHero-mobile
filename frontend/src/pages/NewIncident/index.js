@@ -1,22 +1,52 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
+import api from '../../services/api';
 import './styles.css';
 
 import logoImg from '../../assets/logo.svg';
 
 export default function NewIncident() {
+  const [ongId, setOngId] = useState('');
+
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+  const [value, setValue] = useState('');
+
   const history = useHistory();
+
+  function setLogout() {
+    localStorage.removeItem('ongId');
+    localStorage.removeItem('ongName');
+
+    history.push('/');
+  }
+
+  async function handleCreate (event) {
+    event.preventDefault();
+
+    const data = { title, description, value };
+
+    try {
+      await api.post('incidents', data, {
+        headers: { Authorization: ongId },
+      });
+
+      history.push('/profile');
+    } catch (error) {
+      console.log('Erro ao cadastrar caso, tente novamente.', error.response.data);
+      alert('Erro ao cadastrar caso, tente novamente.');
+    }
+  }
 
   useEffect(() => {
     const id = localStorage.getItem('ongId');
 
-    if (!id) {
-      localStorage.removeItem('ongId');
-      localStorage.removeItem('ongName');
-
-      history.push('/');
+    if (id) {
+      setOngId(id);
+    } else {
+      setLogout();
     }
   }, []);
 
@@ -35,10 +65,22 @@ export default function NewIncident() {
           </Link>
         </section>
 
-        <form>
-          <input placeholder="Titulo do caso" />
-          <textarea placeholder="Descrição" />
-          <input placeholder="Valor em reais" />
+        <form onSubmit={handleCreate}>
+          <input
+            placeholder="Titulo do caso"
+            value={title}
+            onChange={event => setTitle(event.target.value)}
+          />
+          <textarea
+            placeholder="Descrição"
+            value={description}
+            onChange={event => setDescription(event.target.value)}
+          />
+          <input
+            placeholder="Valor em reais"
+            value={value}
+            onChange={event => setValue(event.target.value)}
+          />
 
           <button className="button" type="submit">Cadastrar</button>
         </form>
