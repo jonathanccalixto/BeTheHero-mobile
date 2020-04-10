@@ -9,8 +9,21 @@ import './styles.css';
 
 export default function Profile() {
   const [incidents, setIncidents] = useState([]);
-  const ongId = localStorage.getItem('ongId');
-  const ongName = localStorage.getItem('ongName');
+  const [ongName, setOngName] = useState('<ong name>');
+  const [ongId, setOngId] = useState('');
+
+  const history = useHistory();
+
+  useEffect(() => {
+    const id = localStorage.getItem('ongId');
+
+    if (id) {
+      setOngName(localStorage.getItem('ongName'));
+      setOngId(id);
+    } else {
+      history.push('/');
+    }
+  }, []);
 
   useEffect(() => {
     api.get('profiles', {
@@ -19,8 +32,6 @@ export default function Profile() {
       setIncidents(response.data);
     });
   }, [ongId]);
-
-  const history = useHistory();
 
   async function handleDelete (id) {
     try {
