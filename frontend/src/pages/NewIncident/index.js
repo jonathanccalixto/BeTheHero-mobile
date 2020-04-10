@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import './styles.css';
@@ -7,6 +7,19 @@ import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
 export default function NewIncident() {
+  const history = useHistory();
+
+  useEffect(() => {
+    const id = localStorage.getItem('ongId');
+
+    if (!id) {
+      localStorage.removeItem('ongId');
+      localStorage.removeItem('ongName');
+
+      history.push('/');
+    }
+  }, []);
+
   return (
     <div className="new-incident-container">
       <div className="content">
