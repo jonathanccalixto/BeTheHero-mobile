@@ -35,62 +35,22 @@ export default function Profile() {
       <h1>Casos cadastrados</h1>
 
       <ul>
-        <li>
-          <strong>CASO: </strong>
-          <p>caso teste</p>
+        { incidents.map(incident => (
+          <li key={incident.id}>
+            <strong>CASO: </strong>
+            <p>{ incident.title }</p>
 
-          <strong>DESCRIÇÃO: </strong>
-          <p>Descrição teste</p>
+            <strong>DESCRIÇÃO: </strong>
+            <p>{ incident.decription }</p>
 
-          <strong>VALOR: </strong>
-          <p>R$ 120,00</p>
+            <strong>VALOR: </strong>
+            <p>R$ { incident.value }</p>
 
-          <button type="button">
-            <FiTrash2 size={20} color="#A8A8B3" />
-          </button>
-        </li>
-        <li>
-          <strong>CASO: </strong>
-          <p>caso teste</p>
-
-          <strong>DESCRIÇÃO: </strong>
-          <p>Descrição teste</p>
-
-          <strong>VALOR: </strong>
-          <p>R$ 120,00</p>
-
-          <button type="button">
-            <FiTrash2 size={20} color="#A8A8B3" />
-          </button>
-        </li>
-        <li>
-          <strong>CASO: </strong>
-          <p>caso teste</p>
-
-          <strong>DESCRIÇÃO: </strong>
-          <p>Descrição teste</p>
-
-          <strong>VALOR: </strong>
-          <p>R$ 120,00</p>
-
-          <button type="button">
-            <FiTrash2 size={20} color="#A8A8B3" />
-          </button>
-        </li>
-        <li>
-          <strong>CASO: </strong>
-          <p>caso teste</p>
-
-          <strong>DESCRIÇÃO: </strong>
-          <p>Descrição teste</p>
-
-          <strong>VALOR: </strong>
-          <p>R$ 120,00</p>
-
-          <button type="button">
-            <FiTrash2 size={20} color="#A8A8B3" />
-          </button>
-        </li>
+            <button type="button">
+              <FiTrash2 size={20} color="#A8A8B3" />
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );
