@@ -1,24 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { View, FlatList, Image, Text, TouchableOpacity } from 'react-native';
+
+import api from '../../services/api';
 
 import logoImg from '../../assets/logo.png';
 
 import styles from './styles';
 
 export default function Incidents() {
-  const incidents = [
-    { id: 1, name: 'APAD', title: 'Cadelinha atropelada', value: 'R$ 120,00' },
-    { id: 2, name: 'APAD', title: 'Cadelinha atropelada', value: 'R$ 120,00' },
-    { id: 3, name: 'APAD', title: 'Cadelinha atropelada', value: 'R$ 120,00' },
-  ];
+  const [incidents, setIncidents] = useState([]);
 
   const navigation = useNavigation();
 
   function navigateToDetail() {
     navigation.navigate('Detail');
   }
+
+  async function loadIncidents() {
+    response = await api.get('incidents')
+
+    setIncidents(response.data);
+  }
+
+  useEffect(() => {
+    loadIncidents();
+  }, []);
 
   return (
     <View style={styles.container} >
