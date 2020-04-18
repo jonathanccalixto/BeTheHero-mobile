@@ -9,23 +9,23 @@ import logoImg from '../../assets/logo.png';
 import styles from './styles';
 
 export default function Detail() {
-  const item = { id: 1, name: 'APAD', title: 'Cadelinha atropelada', "whatsapp": "31966895475", "email": "contato@apad.org.br", value: 'R$ 120,00' };
+  const incident = { id: 1, name: 'APAD', title: 'Cadelinha atropelada', "whatsapp": "31966895475", "email": "contato@apad.org.br", value: 'R$ 120,00' };
 
   const navigation = useNavigation();
-  const message = `Olá ${item.name}, estou entrando em contato pois gostaria de ajudar no caso "${item.title}" com o valor de ${item.value}`;
+  const message = `Olá ${incident.name}, estou entrando em contato pois gostaria de ajudar no caso "${incident.title}" com o valor de ${incident.value}`;
 
   function navigateBack() {
     navigation.goBack();
   }
 
   function sendWhatsapp() {
-    Linking.openURL(`whatsapp://send?phone=55${item.whatsapp}&text=${message}`)
+    Linking.openURL(`whatsapp://send?phone=55${incident.whatsapp}&text=${message}`)
   }
 
   function sendMail() {
     MailComposer.composeAsync({
-      subject: `Héroi do caso: ${item.title}`,
-      recipients: [item.email],
+      subject: `Héroi do caso: ${incident.title}`,
+      recipients: [incident.email],
       body: message,
     });
   }
@@ -44,13 +44,13 @@ export default function Detail() {
 
       <View style={styles.incident}>
         <Text style={[styles.incidentProperty, { marginTop: 0}]}>ONG:</Text>
-        <Text style={styles.incidentValue}>{item.name}</Text>
+        <Text style={styles.incidentValue}>{incident.name}</Text>
 
         <Text style={styles.incidentProperty}>CASO:</Text>
-        <Text style={styles.incidentValue}>{item.title}</Text>
+        <Text style={styles.incidentValue}>{incident.title}</Text>
 
         <Text style={styles.incidentProperty}>VALOR:</Text>
-        <Text style={styles.incidentValue}>{ item.value }</Text>
+        <Text style={styles.incidentValue}>{ incident.value }</Text>
       </View>
 
       <View style={styles.contactBox}>

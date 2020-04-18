@@ -45,16 +45,16 @@ export default function Incidents() {
         style={styles.incidentList}
         keyExtractor={incident => String(incident.id)}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
+        renderItem={({ item: incident }) => (
           <View style={styles.incident}>
             <Text style={styles.incidentProperty}>ONG:</Text>
-            <Text style={styles.incidentValue}>{item.name}</Text>
+            <Text style={styles.incidentValue}>{incident.name}</Text>
 
             <Text style={styles.incidentProperty}>CASO:</Text>
-            <Text style={styles.incidentValue}>{item.title}</Text>
+            <Text style={styles.incidentValue}>{incident.title}</Text>
 
             <Text style={styles.incidentProperty}>VALOR:</Text>
-            <Text style={styles.incidentValue}>{ item.value }</Text>
+            <Text style={styles.incidentValue}>{ incident.value }</Text>
 
             <TouchableOpacity
               style={styles.detailsButton}
