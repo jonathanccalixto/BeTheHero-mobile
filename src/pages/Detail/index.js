@@ -9,7 +9,7 @@ import logoImg from '../../assets/logo.png';
 import styles from './styles';
 
 export default function Detail() {
-  const incident = { id: 1, name: 'APAD', title: 'Cadelinha atropelada', "whatsapp": "31966895475", "email": "contato@apad.org.br", value: 'R$ 120,00' };
+  const incident = { id: 1, name: 'APAD', title: 'Cadelinha atropelada', "whatsapp": "31966895475", "email": "contato@apad.org.br", value: 120.33 };
 
   const navigation = useNavigation();
   const message = `Olá ${incident.name}, estou entrando em contato pois gostaria de ajudar no caso "${incident.title}" com o valor de ${incident.value}`;
@@ -50,7 +50,12 @@ export default function Detail() {
         <Text style={styles.incidentValue}>{incident.title}</Text>
 
         <Text style={styles.incidentProperty}>VALOR:</Text>
-        <Text style={styles.incidentValue}>{ incident.value }</Text>
+        <Text style={styles.incidentValue}>
+          { Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          }).format(incident.value) }
+        </Text>
       </View>
 
       <View style={styles.contactBox}>
