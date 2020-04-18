@@ -21,7 +21,7 @@ export default function Detail() {
       </View>
 
       <View style={styles.incident}>
-        <Text style={styles.incidentProperty}>ONG:</Text>
+        <Text style={[styles.incidentProperty, { marginTop: 0}]}>ONG:</Text>
         <Text style={styles.incidentValue}>{item.name}</Text>
 
         <Text style={styles.incidentProperty}>CASO:</Text>
