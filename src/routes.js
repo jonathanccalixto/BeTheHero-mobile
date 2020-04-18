@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -11,8 +12,8 @@ export default function Routes() {
     <NavigationContainer>
 
       <AppStack.Navigator>
-        <AppStack.Screen component={Incidents}></AppStack.Screen>
-        <AppStack.Screen component={Detail}></AppStack.Screen>
+        <AppStack.Screen name="Incidents" component={Incidents}></AppStack.Screen>
+        <AppStack.Screen name="Detail" component={Detail}></AppStack.Screen>
       </AppStack.Navigator>
 
     </NavigationContainer>
