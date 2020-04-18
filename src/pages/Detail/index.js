@@ -1,7 +1,7 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { View, Image, Text, TouchableOpacity, Linking } from 'react-native';
 import * as MailComposer from 'expo-mail-composer';
 
 import logoImg from '../../assets/logo.png';
@@ -9,7 +9,7 @@ import logoImg from '../../assets/logo.png';
 import styles from './styles';
 
 export default function Detail() {
-  const item = { id: 1, name: 'APAD', title: 'Cadelinha atropelada', "email": "contato@apad.org.br", value: 'R$ 120,00' };
+  const item = { id: 1, name: 'APAD', title: 'Cadelinha atropelada', "whatsapp": "31966895475", "email": "contato@apad.org.br", value: 'R$ 120,00' };
 
   const navigation = useNavigation();
   const message = `Olá ${item.name}, estou entrando em contato pois gostaria de ajudar no caso "${item.title}" com o valor de ${item.value}`;
@@ -19,6 +19,7 @@ export default function Detail() {
   }
 
   function sendWhatsapp() {
+    Linking.openURL(`whatsapp://send?phone=55${item.whatsapp}&text=${message}`)
   }
 
   function sendMail() {
