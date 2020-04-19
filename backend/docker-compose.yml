@@ -7,4 +7,4 @@ services:
       - "4000:4000"
     command: yarn start
     volumes:
-      - ".:/home/backend/app"
+      - ".:/home/node/app"
