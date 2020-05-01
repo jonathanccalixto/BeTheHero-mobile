@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
@@ -40,15 +40,13 @@ export default function NewIncident() {
     }
   }
 
-  useEffect(() => {
-    const id = localStorage.getItem('ongId');
+  const id = localStorage.getItem('ongId');
 
-    if (id) {
-      setOngId(id);
-    } else {
-      setLogout();
-    }
-  }, []);
+  if (id) {
+    setOngId(id);
+  } else {
+    setLogout();
+  }
 
   return (
     <div className="new-incident-container">

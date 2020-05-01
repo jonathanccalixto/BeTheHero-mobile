@@ -8,6 +8,8 @@ import api from '../../services/api';
 import './styles.css';
 
 export default function Profile() {
+  const id = localStorage.getItem('ongId');
+
   const [incidents, setIncidents] = useState([]);
   const [ongName, setOngName] = useState('<ong name>');
   const [ongId, setOngId] = useState('');
@@ -40,16 +42,12 @@ export default function Profile() {
     setLogout();
   }
 
-  useEffect(() => {
-    const id = localStorage.getItem('ongId');
-
-    if (id) {
-      setOngName(localStorage.getItem('ongName'));
-      setOngId(id);
-    } else {
-      setLogout();
-    }
-  }, []);
+  if (id) {
+    setOngName(localStorage.getItem('ongName'));
+    setOngId(id);
+  } else {
+    setLogout();
+  }
 
   useEffect(() => {
     api.get('profiles', {
