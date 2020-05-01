@@ -24,7 +24,11 @@ export default function Logon() {
 
       history.push('/profile');
     } catch (error) {
-      console.log('Falha no login, tente novamente.', error.response.data);
+      setId('');
+      localStorage.removeItem('ongId');
+      localStorage.removeItem('ongName');
+
+      console.log('Falha no login, tente novamente.', error);
       alert('Falha no login, tente novamente.');
     }
   }

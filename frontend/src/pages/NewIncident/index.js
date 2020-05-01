@@ -8,7 +8,7 @@ import './styles.css';
 import logoImg from '../../assets/logo.svg';
 
 export default function NewIncident() {
-  const [ongId, setOngId] = useState('');
+  const ongId = localStorage.getItem('ongId');
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -40,11 +40,7 @@ export default function NewIncident() {
     }
   }
 
-  const id = localStorage.getItem('ongId');
-
-  if (id) {
-    setOngId(id);
-  } else {
+  if (!ongId) {
     setLogout();
   }
 
